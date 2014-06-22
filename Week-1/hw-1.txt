@@ -1,0 +1,147 @@
+1. 
+
+"""
+Simulator for resource generation with upgrades
+"""
+
+# import simpleplot
+import math
+# import codeskulptor
+# codeskulptor.set_timeout(20)
+
+
+def resources_vs_time(upgrade_cost_increment, num_upgrade):
+    """
+    Build function that performs unit upgrades with specified cost increments
+    """
+    current_time = 0
+    total_resource_generated = 0
+    current_generation_rate = 1
+    cost = 1
+    time = 0
+    result = []
+    current_time += 1
+    current_generation_rate += 1
+    total_resource_generated += 1
+    cost += upgrade_cost_increment
+    result.append([current_time, total_resource_generated])
+    for index in range(num_upgrade - 1):
+    	time = cost / current_generation_rate
+    	current_time += time
+    	total_resource_generated += current_generation_rate * time
+    	cost += upgrade_cost_increment
+
+    	current_generation_rate += 1
+    	result.append([current_time, total_resource_generated])
+    return result
+
+def test():
+    """
+    Testing code for resources_vs_time
+    """
+    data1 = resources_vs_time(0.0, 10)
+    data2 = resources_vs_time(1.0, 10)
+    print data1
+    print data2
+    # simpleplot.plot_lines("Growth", 600, 600, "time", "total resources", [data1, data2])
+
+test()
+
+- 10 55
+
+2.
+
+"""
+Simulator for resource generation with upgrades
+"""
+
+import simpleplot
+import math
+import codeskulptor
+codeskulptor.set_timeout(20)
+
+
+def resources_vs_time(upgrade_cost_increment, num_upgrade):
+    """
+    Build function that performs unit upgrades with specified cost increments
+    """
+    total_resources_generated = 0.0
+    units = 0.0
+    time = 0.0
+    increment = 1.0
+    result = []
+    upgrades = 0
+    cost = 1.0
+    while upgrades < num_upgrade:
+        time_until_upgrade = cost/increment
+        time += time_until_upgrade
+        upgrades += 1
+        total_resources_generated += increment * time_until_upgrade
+        cost += upgrade_cost_increment
+        increment += 1.0
+        result.append([time, upgrades])
+    return result
+
+def test():
+    """
+    Testing code for resources_vs_time
+    """
+    data1 = resources_vs_time(0.0, 50)
+    data2 = resources_vs_time(1.0, 10)
+    data3 = resources_vs_time(2.0, 10)
+    data4 = resources_vs_time(0.5, 10)
+    print data1
+    simpleplot.plot_lines("Growth", 600, 600, "time", "total resources", [data1])
+
+test()
+
+- 0
+
+3. The next four questions will examine the case when upgrade_cost_increment== 0. We first consider whether the total resources generated is a polynomial function of time for this case. To answer this question, generate the Log/Log plot of this graph by modifying resources_vs_time to take the logarithm of current_time and total_resources_generated (using math.log()).
+Then use SimplePlot to plot the output and examine the resulting graph. Is the graph a straight line?
+
+- No, the graph is not a straight line. ( This observation means the the function is not a polynomial.)
+
+4. Examine the output of resources_vs_time for the case when upgrade_cost_increment == 0.
+What arithmetic sum models the value of current_time after n upgrades?
+
+- 1 + 1/2 + 1/3 + ... + 1/n
+
+5. What function f(n) models the total value of the sum in problem 4 most accurately?
+Hint: the most accurate approximation will always be within a small fixed amount of the value of the sum for any value of n.
+
+- f(n) = log(n)
+  (The sum 1+12+13+...+1n and log(n) differ by a small constant as n grows large.)
+
+6. To conclude our analysis of this case, we wish to express total resources generated in terms of time. Examining the output when upgrade_cost_increment == 0, we observe that the total resources after n upgrades is simply n. Based on this observation, we observe that we can approximate the time t as a function of the resources r via t=f(r) where f is the answer to problem 5. To model the total resources as a function of time, we seek the inverse function g for f that the approximates total resources r to the time t via r=g(t).
+
+Enter g(t) as a math expression. To format your expression correctly, please consult this page. Remember to use the Preview button (as well as the Help link) to make sure that your expression is formatted correctly.
+
+- E^t
+ (The exponential function exp(t) is the inverse function of log(t) since t=exp(log(t)). For this case, the total resources grow exponentially as function of time.)
+
+7. For the next three problems, we will consider the case when upgrade_cost_increment == 1.
+Plotting the output of resources_vs_time() in Log/Log form yields a graph which is nearly a straight line. This observation signals that the function may be a polynomial function. Compute the slope of this line and round it to the nearest integer to estimate the degree of the polynomial.
+
+- 2  (The graph corresponds to a quadratic function.)
+
+8. Examining the output of resources_vs_time(), what sum models the total resources generated after n upgrades?
+
+ - 1 + 2 + 3 + ... + n
+
+9. For upgrade_cost_increment == 1, examine the relationship between the time t and the number of upgrades n. Then, derive an exact expression for total resources generated in terms of the time t. Enter this expression in t as a math expression below.
+
+- t * (t+1) * 1/2
+
+10. In the last two questions, we will analyze the total resources generated in Cookie Clicker when there is only one possible upgrade option. Instead of increasing the cost of an upgrade by some fixed amount after each upgrade, each upgrade in Cookie Clicker costs 15% more than the cost of the previous upgrade. (Note that this cost compounds in the same manner that interest does.)
+
+If the first upgrade costs one unit, enter a math expression that models the cost of the nth upgrade.
+
+- 1.15 ^ (n-1)
+
+11. For the case when upgrade_cost_increment == 1, we earlier observed that total resources generated grew as a quadratic function of time. When we compare this case to the behavior of Cookie Clicker from question 10, which of the following statements is true?
+You may want to compute and plot some examples using SimplePlot to help in making this comparison.
+
+- After some fixed amount of time, the upgrade_cost_increment == 1 case always generates more total resources than the Cookie Clicker case.
+
+
