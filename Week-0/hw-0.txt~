@@ -1,0 +1,61 @@
+1. Enter the type of the Python expression 3.14159 below. Remember that capitalization is important.
+ - Float
+
+2. An if statement can have how many elif parts?
+ - Unlimited, i.e., 0 or more
+
+3. Consider the following Python code snippet:
+ def clock_helper(total_seconds):
+    """
+    Helper function for a clock
+    """
+    seconds_in_minute = total_seconds % 60
+print (clock_helper(90))
+
+- None
+
+4. In Python, what character always appears at the end of the line before the start of an indented block of code?
+- :
+
+5. Which of the following expressions returns the last character in the non-empty string my_string?
+
+- my_string[len(my_string) - 1]
+- my_string[-1]
+
+6. What is the primary difference between a list and a tuple?
+- Lists are mutable. Tuples are immutable.
+
+7. Consider the following snippet of Python code. What is the value of val2[1] after executing this code?
+
+val1 = [1, 2, 3]
+val2 = val1[1:]
+val1[2]  = 4
+#print val2[1]
+
+- 3
+
+8. Which of the following Python expressions is a valid key in a Python dictionary?
+- False, "", 0
+
+9. 
+
+def appendsums(lst):
+    sum = 0
+    for i in range(25):
+        sum = lst[len(lst) -1] + lst[len(lst) -2] + lst[len(lst) -3]
+        #print sum
+        lst.append(sum)
+    return lst
+
+sum_three = [0, 1, 2]
+appendsums(sum_three)
+#print sum_three[10]
+print sum_three[20]
+
+- 101902
+
+10. 
+
+
+
+
